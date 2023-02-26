@@ -1,4 +1,4 @@
-# Bot for instagram
+# BotInsta
 Este é um projeto em Python que consiste em um bot para seguir pessoas no Instagram. A ideia é seguir as pessoas que seguem uma determinada conta, com o objetivo de obter mais seguidores para a conta do cliente.
 
 ## Funcionamento
