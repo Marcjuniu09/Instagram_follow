@@ -14,8 +14,8 @@ Verificar se as pessoas seguidas pelo bot seguiram de volta a conta do cliente.
 Deixar de seguir todas as pessoas que foram seguidas pelo bot após um determinado período de tempo.
 
 ## Tecnologias Utilizadas
-Python;
+Python
 
-Selenium.
+Selenium
 ## Autor
 Este projeto foi desenvolvido por Marcelo Júnio para Richard Petry.
