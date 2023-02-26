@@ -17,4 +17,4 @@ Deixar de seguir todas as pessoas que foram seguidas pelo bot após um determina
 Python
 Selenium
 ## Autor
-Este projeto foi desenvolvido por [Marcelo Júnio] para [Richard Petry].
+Este projeto foi desenvolvido por Marcelo Júnio para Richard Petry.
