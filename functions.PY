@@ -35,30 +35,34 @@ def save_current_followers(username, driver):
     driver.get(f'https://www.instagram.com/{username}/followers/')
     time.sleep(3)
     fBody_st = driver.find_element("xpath", "//div[@class='_aano']") 
-    contador_crt = 1
+    contador_crt = 0
     scroll_st = 0
     current_followers = [] #Lista de seguidores atuais
+    cont_interrupt = 0 #Contador para parar o loop quando o xpath mudar
 
     while scroll_st < 1:  
         for _ in range(0, 6):
             contador_crt += 1
             try:
+                time.sleep(2)
                 name = driver.find_element('xpath', f'/html/body/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/div[1]/div/div[{contador_crt}]/div/div/div/div[2]/div/div/div[1]/span/div/div[1]/div/a/span/div').text
                 time.sleep(2)
+                print(name)
                 if name not in current_followers:
                     current_followers.append(name)
             except:
-                print('Xpath alterado')
-                scroll_st += 1
-                break
+                driver.execute_script('arguments[0].scrollTop = arguments[0].scrollTop + arguments[0].offsetHeight;', fBody_st) 
+                cont_interrupt += 1
+                if cont_interrupt == 5:
+                    print('Xpath alterado')
+                    scroll_st += 1
+                    break
         driver.execute_script('arguments[0].scrollTop = arguments[0].scrollTop + arguments[0].offsetHeight;', fBody_st) 
-    
     data = {
     'Seguidores Atuais': current_followers
         }
     df = pd.DataFrame(data)
     df.to_csv('dataframe.csv', index=False)
-        
 
 #Seguindo as pessoas da conta que eu quero
 def follow(username, driver):
@@ -70,14 +74,15 @@ def follow(username, driver):
     For sempre executa 6 vezes porque é o número de seguidores que aparece na tela antes de rolar a página
     tempo é o tempo que o bot vai esperar pra seguir o próximo usuário, e sempre vai ser um número aleatório entre 0 e 40
     """
-    tempo = int(randint(0,40))
+    tempo = int(randint(3,40))
     driver.get(f'https://www.instagram.com/{username}/followers/')
     time.sleep(4)
     fBody = driver.find_element("xpath", "//div[@class='_aano']")  # encontra o corpo da lista de seguidores
-    contador = 1
+    contador = 0
     scroll = 0
     ini_folow =  [] #Lista de quem eu comecei a seguir
     dt_time_flw = [] #Lista de data e hora que eu comecei a seguir
+    cont_interrupt_flw = 0 #Contador para parar o loop quando o xpath mudar
 
     while scroll < 1: 
         for _ in range(0, 6):
@@ -93,9 +98,12 @@ def follow(username, driver):
                 else:
                     continue
             except:
-                print('Xpath alterado')
-                scroll += 1  
-                break
+                driver.execute_script('arguments[0].scrollTop = arguments[0].scrollTop + arguments[0].offsetHeight;', fBody)  # executa o script que rola a lista de seguidores para baixo
+                cont_interrupt_flw += 1
+                if cont_interrupt_flw == 5:
+                    print('Xpath alterado')
+                    scroll += 1  
+                    break
         driver.execute_script('arguments[0].scrollTop = arguments[0].scrollTop + arguments[0].offsetHeight;', fBody)  # executa o script que rola a lista de seguidores para baixo
         time.sleep(2)  # espera 2 segundos para o carregamento da página
 
