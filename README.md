@@ -6,8 +6,8 @@ O bot utiliza a biblioteca Selenium para automatizar as ações no Instagram. É
 
 O processo de seguir os seguidores de uma conta pode ser feito de forma automatizada, sem a necessidade de intervenção humana. O bot realiza a ação de seguir as pessoas e pode ser configurado para executar a ação durante um determinado período de tempo.
 
-## Funcionalidades Futuras
-Além da funcionalidade de seguir os seguidores de uma conta no Instagram, o bot será aprimorado com novas funcionalidades. Algumas dessas funcionalidades são:
+## Funcionalidades
+Além da funcionalidade de seguir os seguidores de uma conta no Instagram, o bot possui outras funcionalidades como:
 
 Salvar em uma base de dados todas as pessoas que foram seguidas pelo bot.
 Verificar se as pessoas seguidas pelo bot seguiram de volta a conta do cliente.
@@ -17,5 +17,8 @@ Deixar de seguir todas as pessoas que foram seguidas pelo bot após um determina
 Python
 
 Selenium
+
+Pandas
+
 ## Autor
 Este projeto foi desenvolvido por Marcelo Júnio para Richard Petry.
