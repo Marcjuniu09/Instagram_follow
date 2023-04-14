@@ -155,25 +155,26 @@ def status_follow(username, driver):
 
 
 #Deixando de seguir quem eu comecei a seguir
-def unfollow():
+def unfollow(username, driver):
     """
     Função para deixar de seguir quem eu comecei a seguir, verifica se o nome está na lista de pessoas que estou seguindo, se tiver, ele clica no botão de deixar de seguir
     """
+    
     df = pd.read_csv('dataframe.csv')
-    driver.get(f'https://www.instagram.com/{work_acount}/following/')
+    driver.get(f'https://www.instagram.com/{username}/following/')
     time.sleep(2)
     fBody_unf = driver.find_element("xpath", "//div[@class='_aano']")
     contador_unf = 1
     scroll_unf = 0
-    tempo_unf = int(randint(0, 40))
+    tempo_unf = int(randint(6, 40))
     while scroll_unf < 1: 
         for _ in range(0, 6):
             contador_unf += 1
             time.sleep(2)
-            name = driver.find_element('xpath', f'/html/body/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/div[1]/div/div[{contador_unf}]/div/div/div/div[2]/div/div/div[1]/span/div/div[1]/div/a/span/div').text
+            name = driver.find_element('xpath', f'/html/body/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/div[1]/div/div[{contador_unf}]/div/div/div/div[2]/div/div/div[1]/span/div/div/div/a/span/div').text
             try:
-                if name in df['Seguindo'].values:
-                    driver.find_element('xpath', f'/html/body/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/div[1]/div/div[{contador_unf}]/div/div/div/div[3]/div/button/div/div').click() 
+                if name in df['Seguidores Atuais'].values:
+                    driver.find_element('xpath', f'/html/body/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/div[1]/div/div[{contador_unf}]/div/div/div/div[3]/div/button/div/div').click() 
                     time.sleep(3)
                     driver.find_element('xpath', '/html/body/div[2]/div/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div/div/div/div/div/button[1]').click()
                     time.sleep(tempo_unf)
@@ -188,3 +189,4 @@ def unfollow():
         scroll_unf += 1
 
 
+from math import sin
