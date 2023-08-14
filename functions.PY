@@ -10,10 +10,10 @@ from random import randint
 serv = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=serv)
 
-id_acount = 'j.barbosaa0'
-pass_acount = 'Workpass123!'
-work_acount = 'j.barbosaa0'
-acount_follow = 'majuu.qurz'
+id_acount = ''
+pass_acount = ''
+work_acount = ''
+acount_follow = ''
 
 
 #Parte que leva para a página de login
